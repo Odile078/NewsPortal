@@ -16,7 +16,7 @@ public class News {
 
     private final String TYPE_OF_NEWS="general";
 
-    public News(String name,String tittle,String writtenBy, String content,int employee_id,int department_id) {
+    public News(String name,String tittle,String writtenBy, String content,int employee_id) {
         this.writtenBy = writtenBy;
         this.tittle = tittle;
         this.content = content;
@@ -27,8 +27,17 @@ public class News {
         setFormattedCreatedAt();
 
     }
+    public News(String name,String tittle,String writtenBy, String content,int employee_id,int department_id) {
+        this.writtenBy = writtenBy;
+        this.tittle = tittle;
+        this.content = content;
+        this.type = "department";
+        this.employee_id = employee_id;
+        this.department_id=department_id;
+        this.createdat = System.currentTimeMillis();
+        setFormattedCreatedAt();
 
-
+    }
     public String getTittle() {
         return tittle;
     }
