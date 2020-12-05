@@ -16,10 +16,10 @@ public interface EmployeeDao {
     List<Department> getAllEmployeeByDepartment(int employee_id);
 
     //update
-    //void update(String name, String position, String role);
+    void update(int id,String name, String position, String role);
 
     //delete
-    //void deleteById(int id);
+    void deleteById(int id);
     void clearAll();
 
 }

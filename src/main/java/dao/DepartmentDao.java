@@ -20,6 +20,6 @@ public interface DepartmentDao {
     //omit for now
 
     //delete
-    //void deleteById(int id);
+    void deleteById(int id);
     void clearAll();
 }

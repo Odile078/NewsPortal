@@ -25,6 +25,10 @@ public class Department {
         return size;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setSize(int size) {
         this.size = size;
     }
@@ -34,6 +38,10 @@ public class Department {
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
