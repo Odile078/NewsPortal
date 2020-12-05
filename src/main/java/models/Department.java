@@ -6,10 +6,12 @@ public class Department {
     private int id;
     private String name;
     private String description;
+    private int size;
 
     public Department(String name,String description) {
         this.description = description;
         this.name = name;
+        this.size = 0;
     }
 
     public String getName() {
@@ -18,6 +20,13 @@ public class Department {
 
     public String getDescription() {
         return description;
+    }
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public void setName(String name) {
@@ -33,12 +42,13 @@ public class Department {
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
         return id == that.id &&
+                size == that.size &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description);
+        return Objects.hash(id, name, description, size);
     }
 }
