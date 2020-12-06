@@ -9,6 +9,8 @@ import models.News;
 import models.Employee;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
 
 
 import java.util.HashMap;
@@ -48,6 +50,12 @@ public class App {
         sql2oNewsDao=new Sql2oNewsDao(sql2o);
         sql2oEmployeeDao=new Sql2oEmployeeDao(sql2o);
         conn=sql2o.open();
+
+        //Home page
+        get("/",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            return new ModelAndView(model,"index.hbs");
+        },new HandlebarsTemplateEngine());
 
         //read employees,news,departments
         get("/employees", "application/json", (request, response) -> {
