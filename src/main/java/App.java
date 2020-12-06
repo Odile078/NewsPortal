@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import dao.DepartmentDao;
 import dao.Sql2oDepartmentDao;
 import dao.Sql2oNewsDao;
 import dao.Sql2oEmployeeDao;
@@ -60,7 +61,7 @@ public class App {
             Map<String,Object> model=new HashMap<String, Object>();
             return new ModelAndView(model,"employeeform.hbs");
         },new HandlebarsTemplateEngine());
-          //employee saving
+          //employee retrieval
         post("/create/employee/new",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
             String name=request.queryParams("name");
@@ -85,6 +86,7 @@ public class App {
 
 
 //department
+        //department
 
         //creating department interface
         get("/create/department",(request, response) -> {
@@ -107,12 +109,33 @@ public class App {
         },new HandlebarsTemplateEngine());
              //department retrieval
 
-        //retrieving the employee
+            //retrieving the department
         get("/view/departments",(request, response) -> {
             Map<String,Object> model=new HashMap<String, Object>();
             model.put("departments",sql2oDepartmentDao.getAll());
             return new ModelAndView(model,"departmentview.hbs");
         },new HandlebarsTemplateEngine());
+
+            //retrive department news
+     /*   get("/view/location/sightings/:id",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            int idOfLocation= Integer.parseInt(request.params(":id"));
+            Department foundLocation= Department.sql2oDepartmentDao.findById(idOfLocation);
+            List<News> news=foundLocation.getAll();
+            ArrayList<String> animals=new ArrayList<String>();
+            ArrayList<String> types=new ArrayList<String>();
+            for (RegSighting sighting : news){
+                String animal_name=RegAnimal.find(sighting.getRegAnimal_id()).getName();
+                String animal_type=RegAnimal.find(sighting.getRegAnimal_id()).getType();
+                animals.add(animal_name);
+                types.add(animal_type);
+            }
+            model.put("sightings",news);
+            model.put("animals",animals);
+            model.put("types",types);
+            model.put("locations",RegLocation.all());
+            return new ModelAndView(model,"locationview.hbs");
+        },new HandlebarsTemplateEngine());*/
 
 //news
         // creating news interface
@@ -121,7 +144,31 @@ public class App {
             return new ModelAndView(model,"newsform.hbs");
         },new HandlebarsTemplateEngine());
 
+        //news retrieval
+        post("/create/news/new",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            String title=request.queryParams("title");
+            String writtenBy=request.queryParams("writtenBy");
+            String content=request.queryParams("content");
+            int employee_id=Integer.parseInt(request.params("id"));
+            int department_id=Integer.parseInt(request.params("id"));
+            News news=new News(title,writtenBy, content,employee_id,department_id);
+            sql2oNewsDao.addNews(news);
+            request.session().attribute("item", title);
+            model.put("item", request.session().attribute("item"));
+            return new ModelAndView(model,"employeeform.hbs");
+            //return new ModelAndView(model,"employeesuccess.hbs");
+        },new HandlebarsTemplateEngine());
 
+        //retrieving the department
+        get("/view/news",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            model.put("news",sql2oNewsDao.getAll());
+            return new ModelAndView(model,"newsview.hbs");
+        },new HandlebarsTemplateEngine());
+
+
+//API
         //read employees,news,departments
         get("/employees", "application/json", (request, response) -> {
 

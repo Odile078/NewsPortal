@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class News {
     public int id;
-    public String tittle;
+    public String title;
     public String writtenBy;
     public String content;
     public String type;
@@ -16,9 +16,9 @@ public class News {
 
     private final String TYPE_OF_NEWS="general";
 
-    public News(String tittle,String writtenBy, String content,int employee_id) {
+    public News(String title,String writtenBy, String content,int employee_id) {
         this.writtenBy = writtenBy;
-        this.tittle = tittle;
+        this.title = title;
         this.content = content;
         this.type = TYPE_OF_NEWS;
         this.employee_id = employee_id;
@@ -27,9 +27,9 @@ public class News {
         setFormattedCreatedAt();
 
     }
-    public News(String tittle,String writtenBy, String content,int employee_id,int department_id) {
+    public News(String title,String writtenBy, String content,int employee_id,int department_id) {
         this.writtenBy = writtenBy;
-        this.tittle = tittle;
+        this.title = title;
         this.content = content;
         this.type = "department";
         this.employee_id = employee_id;
@@ -38,8 +38,8 @@ public class News {
         setFormattedCreatedAt();
 
     }
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
     public String getWrittenBy() {
         return writtenBy;
@@ -68,8 +68,8 @@ public class News {
     }
 
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
     public void setWrittenBy(String writtenBy) {
         this.writtenBy = writtenBy;
