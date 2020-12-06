@@ -8,29 +8,24 @@ public class Department {
     private String description;
     private int size;
 
+
+
     public Department(String name,String description) {
         this.description = description;
         this.name = name;
-        this.size = 0;
+        this.size = size;
+
     }
 
     public String getName() {
         return name;
     }
-
     public String getDescription() {
         return description;
     }
-    public int getSize() {
-        return size;
-    }
-
+    public int getSize() { return size; }
     public int getId() {
         return id;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     public void setName(String name) {
@@ -39,7 +34,7 @@ public class Department {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    public void setSize(int size) { this.size = size; }
     public void setId(int id) {
         this.id = id;
     }

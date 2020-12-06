@@ -1,8 +1,8 @@
 package dao;
 
 import models.Department;
+import models.DepartmentNews;
 import models.Employee;
-import models.News;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -71,7 +71,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
                     .executeAndFetch(Integer.class);
 
             for(Integer id : employee_ids){
-                String employeeResults="SELECT * FROM staff WHERE id=:id";
+                String employeeResults="SELECT * FROM employees WHERE id=:id";
                 employees.add(con.createQuery(employeeResults)
                         .addParameter("id",id)
                         .executeAndFetchFirst(Employee.class));
@@ -94,12 +94,12 @@ public class Sql2oDepartmentDao implements DepartmentDao{
     }
 
     @Override
-    public List<News> getDepartmentNews(int id) {
+    public List<DepartmentNews> getDepartmentNews(int id) {
         try(Connection con=sql2o.open()) {
-            String sql="SELECT * FROM news WHERE id=:id ";
+            String sql="SELECT * FROM departmentnews WHERE id=:id ";
             return con.createQuery(sql)
                     .addParameter("id",id)
-                    .executeAndFetch(News.class);
+                    .executeAndFetch(DepartmentNews.class);
         }
 
     }
@@ -136,3 +136,4 @@ public class Sql2oDepartmentDao implements DepartmentDao{
 
     }
 }
+
