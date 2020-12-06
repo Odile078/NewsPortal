@@ -13,6 +13,7 @@ import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,9 +43,6 @@ public class App {
         //uncomment the line below to run locally,change the following line of code to your credentials
         Sql2o sql2o = new Sql2o(connectionString, "odile", "123");
 
-        //the two lines below are used when using heroku but if you want to run locally comment them
-        //String connectionString = "jdbc:postgresql://ec2-50-17-21-170.compute-1.amazonaws.com:5432/d8b8ehu0safpui"; //!
-        //Sql2o sql2o = new Sql2o(connectionString, "mihpivzxyyqmlv", "5b4f9d76874ad368465a325b3993140263c6d254771908c3d283842d54fcad11");
 
         sql2oDepartmentDao=new Sql2oDepartmentDao(sql2o);
         sql2oNewsDao=new Sql2oNewsDao(sql2o);
@@ -56,6 +54,73 @@ public class App {
             Map<String,Object> model=new HashMap<String, Object>();
             return new ModelAndView(model,"index.hbs");
         },new HandlebarsTemplateEngine());
+ //employee
+        //creating employee interface
+        get("/create/employee",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            return new ModelAndView(model,"employeeform.hbs");
+        },new HandlebarsTemplateEngine());
+          //employee saving
+        post("/create/employee/new",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            String name=request.queryParams("name");
+            String position=request.queryParams("position");
+            String role=request.queryParams("role");
+            Employee employee=new Employee(name, position, role);
+            sql2oEmployeeDao.add( employee);
+            request.session().attribute("item", name);
+            model.put("item", request.session().attribute("item"));
+            return new ModelAndView(model,"employeeform.hbs");
+            //return new ModelAndView(model,"employeesuccess.hbs");
+        },new HandlebarsTemplateEngine());
+           //retrieving the employee
+        get("/view/employees",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            model.put("employees",sql2oEmployeeDao.getAll());
+            return new ModelAndView(model,"employeeview.hbs");
+        },new HandlebarsTemplateEngine());
+
+            //retrieve employee news
+
+
+
+//department
+
+        //creating department interface
+        get("/create/department",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            return new ModelAndView(model,"departmentform.hbs");
+        },new HandlebarsTemplateEngine());
+            //department saving
+
+        post("/create/department/new",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            String name=request.queryParams("name");
+            String description=request.queryParams("description");
+            String size=request.queryParams("size");
+            Department department=new Department(name,description);
+            sql2oDepartmentDao.add( department);
+            request.session().attribute("item", name);
+            model.put("item", request.session().attribute("item"));
+            return new ModelAndView(model,"departmentform.hbs");
+            //return new ModelAndView(model,"departmentsuccess.hbs");
+        },new HandlebarsTemplateEngine());
+             //department retrieval
+
+        //retrieving the employee
+        get("/view/departments",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            model.put("departments",sql2oDepartmentDao.getAll());
+            return new ModelAndView(model,"departmentview.hbs");
+        },new HandlebarsTemplateEngine());
+
+//news
+        // creating news interface
+        get("/create/news",(request, response) -> {
+            Map<String,Object> model=new HashMap<String, Object>();
+            return new ModelAndView(model,"newsform.hbs");
+        },new HandlebarsTemplateEngine());
+
 
         //read employees,news,departments
         get("/employees", "application/json", (request, response) -> {

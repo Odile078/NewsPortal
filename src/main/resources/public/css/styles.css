@@ -1,3 +1,21 @@
+.top{
+  text-align:center;
+  font-size:22px;
+  color:white;
+  font-family: 'Lobster', cursive;
+}
+.top a{
+text-decoration:none;
+color:rgb(212, 179, 179);
+display: inline;
+font-size: 17px;
+
+
+}
+.top a:hover{
+text-decoration:none;
+color:rgb(238, 109, 50);
+}
 .navtitle{
 background-color: rgb(40, 211, 211);
 color: white;
