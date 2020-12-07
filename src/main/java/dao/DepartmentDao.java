@@ -19,6 +19,7 @@ public interface DepartmentDao {
 
 
     //update
+    //void update(int id, String name, String description,int size);
     //omit for now
 
     //delete

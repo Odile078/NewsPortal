@@ -365,7 +365,7 @@ public class App {
 //exception
 
 //FILTERS
-        /*
+
         exception(ApiException.class, (exception, request, response) -> {
             ApiException err = exception;
             Map<String, Object> jsonMap = new HashMap<>();
@@ -376,11 +376,11 @@ public class App {
             response.body(gson.toJson(jsonMap));
         });
 
-
+/*
         after((request, response) ->{
             response.type("application/json");
-        });
+        });*/
 
-*/
+
     }
 }
