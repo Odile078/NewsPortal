@@ -42,8 +42,8 @@ public class EmployeeTest {
     }
     @Test
     public void testgetRole() {
-        Employee testEmployee = new Employee("Annie", "Secretary","Director's assitant");;
-        assertNotEquals("Director'", testEmployee.getRole());
+        Employee testEmployee = setupEmployee();
+        assertEquals("Director's assitant", testEmployee.getRole());
     }
 
     @Test
@@ -51,6 +51,21 @@ public class EmployeeTest {
         Employee testEmployee = setupEmployee();
         testEmployee.setRole("Secretary");
         assertNotEquals("HR", testEmployee.getRole());
+    }
+
+    @Test
+    public void setId() {
+        Employee testEmployee = setupEmployee();
+        testEmployee.setId(5);
+        assertEquals(5, testEmployee.getId());
+    }
+
+
+    @Test
+    public void testgetDepartment_idAndsetDepartment_Id() {
+        Employee testEmployee = setupEmployee();
+        testEmployee.setDepartment_id(5);
+        assertEquals(5, testEmployee.getDepartment_id());
     }
 
     // helper

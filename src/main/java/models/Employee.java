@@ -12,7 +12,7 @@ public class Employee {
     public Employee(String name, String position, String role){
         this.name = name;
         this.position = position;
-        this.position = role;
+        this.role = role;
         this.id =id;
         this.department_id = department_id;
 

@@ -18,14 +18,14 @@ public class DepartmentTest {
     @Test
     public void getName() {
         Department testDepartment = setupDepartment();
-        assertEquals("dessert", testDepartment.getName());
+        assertEquals("IT", testDepartment.getName());
     }
 
     @Test
     public void setName() {
         Department testDepartment = setupDepartment();
         testDepartment.setName("IT");
-        assertNotEquals("IT", testDepartment.getName());
+        assertNotEquals("MANAGEMENT", testDepartment.getName());
     }
 
     @Test
@@ -41,8 +41,9 @@ public class DepartmentTest {
         assertNotEquals("TECHNOLOGY ", testDepartment.getDescription());
     }
 
+
     @Test
-    public void setId() {
+    public void testsetIdAndgetId() {
         Department testDepartment = setupDepartment();
         testDepartment.setId(5);
         assertEquals(5, testDepartment.getId());
