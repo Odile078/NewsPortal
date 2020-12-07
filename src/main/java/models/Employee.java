@@ -18,6 +18,16 @@ public class Employee {
 
 
     }
+    public Employee(String name, String position, String role,int department_id){
+        this.name = name;
+        this.position = position;
+        this.role = role;
+        this.id =id;
+        this.department_id = department_id;
+
+
+    }
+
 
     public int getId() { return id; }
     public String getName() {

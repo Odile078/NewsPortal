@@ -34,6 +34,14 @@
                                 <br>
                             </div>
                         {{/each}}
+                        <div class="col-md-6">
+                            <h3>Department</h3>
+                            <hr>
+                            {{#each departments as |a|}}
+                                <h3>{{a}}</h3>
+                            {{/each}}
+
+                        </div>
 
                     {{else}}
                         <p class="text s-title">There are no registered employees, register here <a href="/create/employee">here</a></p>

@@ -20,13 +20,13 @@
                 </div>
                 <div class="worker"></div>
                 <div>
-                    {{#if employees}}
-                        {{#each employees as |e|}}
+                    {{#if departments}}
+                        {{#each departments as |e|}}
                             <div class="col-md-4">
                                 <div class="ltext">
                                     <p class="text" id={{e.id}}>{{e.name}}</p><br>
-                                    <p class="text" id={{e.id}}>{{e.position}}</p><br>
-                                    <p class="text" id={{e.id}}>{{e.role}}</p><br>
+                                    <p class="text" id={{e.id}}>{{e.description}}</p><br>
+
                                     <a href="/view/ranger/sightings/{{e.id}}"><button class="btn btn-info btn-md">View
                                         Sightings</button></a><br>
 
