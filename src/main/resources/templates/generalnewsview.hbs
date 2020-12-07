@@ -4,14 +4,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 sidenav">
-                <a href="">Create Employees</a>
-                <a href="">Create Departments</a>
-                <a href="">Create the General news</a>
-                <a href="">Create the Department news</a>
-                <a href="">View Employees</a>
-                <a href="">View Departments</a>
-                <a href="">View the General news</a>
-                <a href="">View the Department news</a>
+                <li>
+                    <ul> <a href="/create/employee">Create Employees</a></ul>
+                    <ul><a href="/create/department">Create Departments</a></ul>
+                    <ul><a href="/create/generalnews">Create the General news</a></ul>
+                    <ul> <a href="/create/departmentnews">Create the Department news</a></ul>
+                    <ul><a href="/view/employees">View Employees</a></ul>
+                    <ul><a href="/view/departments">View Departments</a></ul>
+                    <ul><a href="/view/generalnews">View the General news</a></ul>
+                    <ul><a href="/view/departmentnews">View the Department news</a></ul>
+                </li>
             </div>
             <div class="col-md-9">
                 <div class="intro">
@@ -42,7 +44,7 @@
 
 
                     {{else}}
-                        <p class="text s-title">There are no registered employees, register here <a href="/create/departmentnews">here</a></p>
+                        <p class="text s-title">There are no registered news, register here <a href="/create/departmentnews">here</a></p>
                     {{/if}}
                 </div>
             </div>

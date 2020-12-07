@@ -273,7 +273,7 @@ public class App {
             String writtenBy=request.queryParams("writtenBy");
             String content=request.queryParams("content");
             int employee_id=Integer.parseInt(request.params("employee"));
-            int department_id=Integer.parseInt(request.params("id"));
+            //int department_id=Integer.parseInt(request.params("id"));
             GeneralNews generalnews=new GeneralNews(title,writtenBy, content,employee_id);
             sql2oGeneralNewsDao.addGeneralNews(generalnews);
             request.session().attribute("item", title);

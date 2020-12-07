@@ -4,14 +4,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 sidenav">
-                <a href="">Create Employees</a>
-                <a href="">Create Departments</a>
-                <a href="">Create the General news</a>
-                <a href="">Create the Department news</a>
-                <a href="">View Employees</a>
-                <a href="">View Departments</a>
-                <a href="">View the General news</a>
-                <a href="">View the Department news</a>
+                <li>
+                    <ul> <a href="/create/employee">Create Employees</a></ul>
+                    <ul><a href="/create/department">Create Departments</a></ul>
+                    <ul><a href="/create/generalnews">Create the General news</a></ul>
+                    <ul> <a href="/create/departmentnews">Create the Department news</a></ul>
+                    <ul><a href="/view/employees">View Employees</a></ul>
+                    <ul><a href="/view/departments">View Departments</a></ul>
+                    <ul><a href="/view/generalnews">View the General news</a></ul>
+                    <ul><a href="/view/departmentnews">View the Department news</a></ul>
+                </li>
             </div>
             <div class="col-md-9">
                 <div class="intro">
@@ -28,7 +30,7 @@
                                     <p class="text" id={{e.id}}>{{e.position}}</p><br>
                                     <p class="text" id={{e.id}}>{{e.role}}</p><br>
                                     <a href="/view/ranger/sightings/{{e.id}}"><button class="btn btn-info btn-md">View
-                                        Sightings</button></a><br>
+                                        Details</button></a><br>
 
                                 </div>
                                 <br>
@@ -38,7 +40,7 @@
                             <h3>Department</h3>
                             <hr>
                             {{#each departments as |a|}}
-                                <h3>{{a}}</h3>
+                                <h3>{{a.name}}</h3>
                             {{/each}}
 
                         </div>
