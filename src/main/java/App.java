@@ -360,7 +360,7 @@ public class App {
 
         //Api
 
-        post("/depaertmentnews/new/department","application/json",(request, response) -> {
+        post("/departmentnews/new/department","application/json",(request, response) -> {
             DepartmentNews department_news =gson.fromJson(request.body(),DepartmentNews.class);
             Department departments=sql2oDepartmentDao.findById(department_news.getDepartment_id());
             Employee employees=sql2oEmployeeDao.findById(department_news.getEmployee_id());
