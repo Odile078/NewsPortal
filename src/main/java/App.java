@@ -104,7 +104,7 @@ public class App {
         },new HandlebarsTemplateEngine());*/
 
 
-        //Api
+    //Api
 
         //
         post("/departments/new", "application/json", (req, res) -> {
@@ -191,7 +191,7 @@ public class App {
             model.put("departments",sql2oDepartmentDao.getAll());
             return new ModelAndView(model,"employeeview.hbs");
         },new HandlebarsTemplateEngine());
-        //Api
+    //Api
 
 
         post("/employees/new","application/json",(request, response) -> {
@@ -293,15 +293,7 @@ public class App {
         //Api
 
 
-        post("/news/new/general","application/json",(request, response) -> {
-
-            GeneralNews generalnews =gson.fromJson(request.body(),GeneralNews.class);
-            sql2oGeneralNewsDao.addGeneralNews(generalnews);
-            response.status(201);
-            return gson.toJson(generalnews);
-        });
-
-        post("/news/new/general","application/json",(request, response) -> {
+        post("/generalnews/new/general","application/json",(request, response) -> {
 
             GeneralNews generalnews =gson.fromJson(request.body(),GeneralNews.class);
             sql2oGeneralNewsDao.addGeneralNews(generalnews);
@@ -310,12 +302,24 @@ public class App {
         });
 
 
-        get("/news/general","application/json",(request, response) -> {
+
+        get("/generalnews/general","application/json",(request, response) -> {
             if(sql2oGeneralNewsDao.getAll().size()>0){
                 return gson.toJson(sql2oGeneralNewsDao.getAll());
             }
             else {
                 return "{\"message\":\"I'm sorry, but no news are currently listed in the database.\"}";
+            }
+        });
+
+        get("/generalnews/:id", "application/json", (request, response) -> {
+            int id=Integer.parseInt(request.params("id"));
+            if(sql2oGeneralNewsDao.findById(id)==null){
+                throw new ApiException(404, String.format("No news with the id: \"%s\" exists",
+                        request.params("id")));
+            }
+            else {
+                return gson.toJson(sql2oGeneralNewsDao.findById(id));
             }
         });
 
@@ -356,7 +360,7 @@ public class App {
 
         //Api
 
-        post("/news/new/department","application/json",(request, response) -> {
+        post("/depaertmentnews/new/department","application/json",(request, response) -> {
             DepartmentNews department_news =gson.fromJson(request.body(),DepartmentNews.class);
             Department departments=sql2oDepartmentDao.findById(department_news.getDepartment_id());
             Employee employees=sql2oEmployeeDao.findById(department_news.getEmployee_id());
@@ -371,6 +375,17 @@ public class App {
             sql2oDepartmentNewsDao.addDepartmentNews(department_news);
             response.status(201);
             return gson.toJson(department_news);
+        });
+
+        get("/departmentnews/:id", "application/json", (request, response) -> {
+            int id=Integer.parseInt(request.params("id"));
+            if(sql2oDepartmentNewsDao.findById(id)==null){
+                throw new ApiException(404, String.format("No news with the id: \"%s\" exists",
+                        request.params("id")));
+            }
+            else {
+                return gson.toJson(sql2oDepartmentNewsDao.findById(id));
+            }
         });
 //exception
 

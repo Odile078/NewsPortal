@@ -7,6 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sql2oGeneralNewsDao implements GeneralNewsDao{
@@ -52,6 +53,29 @@ public class Sql2oGeneralNewsDao implements GeneralNewsDao{
 
         }
     }
+
+    @Override
+    public List<GeneralNews> getAllgeneralNewsByEmployee(int employee_id) {
+        List<GeneralNews> generalNews = new ArrayList();
+        String joinQuery = "SELECT generalnews_id FROM employees_generalnews WHERE employee_id = :employee_id";
+
+        try (Connection con = sql2o.open()) {
+            List<Integer> allGeneralNewsIds = con.createQuery(joinQuery)
+                    .addParameter("department_id", employee_id)
+                    .executeAndFetch(Integer.class);
+            for (Integer GeneralNewsId : allGeneralNewsIds){
+                String generalnewsQuery = "SELECT * FROM generalnews WHERE id = :generalnews_id";
+                generalNews.add(
+                        con.createQuery(generalnewsQuery)
+                                .addParameter("generalnews_id", GeneralNewsId)
+                                .executeAndFetchFirst(GeneralNews.class));
+            }
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+        return generalNews;
+    }
+
 
     @Override
     public GeneralNews findById(int id) {

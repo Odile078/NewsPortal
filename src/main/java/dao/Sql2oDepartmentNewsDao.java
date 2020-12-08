@@ -7,6 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sql2oDepartmentNewsDao implements DepartmentNewsDao{
@@ -70,6 +71,51 @@ public class Sql2oDepartmentNewsDao implements DepartmentNewsDao{
 
         }
     }
+
+    @Override
+    public List<DepartmentNews> getAllDepartmentNewsByDepartmet(int department_id) {
+        List<DepartmentNews> departmentNews = new ArrayList();
+        String joinQuery = "SELECT departmentnews_id FROM departments_departmentnews WHERE department_id = :department_id";
+
+        try (Connection con = sql2o.open()) {
+            List<Integer> allDepartmentNewsIds = con.createQuery(joinQuery)
+                    .addParameter("department_id", department_id)
+                    .executeAndFetch(Integer.class); //what is happening in the lines above?
+            for (Integer DepartmentNewsId : allDepartmentNewsIds){
+                String departmentnewsQuery = "SELECT * FROM departmentnews WHERE id = :departmentnews_id";
+                departmentNews.add(
+                        con.createQuery(departmentnewsQuery)
+                                .addParameter("departmentnews_id", DepartmentNewsId)
+                                .executeAndFetchFirst(DepartmentNews.class));
+            } //why are we doing a second sql query - set?
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+        return departmentNews;
+    }
+
+    @Override
+    public List<DepartmentNews> getAllDepartmentNewsByEmployee(int employee_id) {
+        List<DepartmentNews> departmentNews = new ArrayList();
+        String joinQuery = "SELECT departmentnews_id FROM employees_departmentnews WHERE employee_id = :employee_id";
+
+        try (Connection con = sql2o.open()) {
+            List<Integer> allDepartmentNewsIds = con.createQuery(joinQuery)
+                    .addParameter("department_id", employee_id)
+                    .executeAndFetch(Integer.class);
+            for (Integer DepartmentNewsId : allDepartmentNewsIds){
+                String departmentnewsQuery = "SELECT * FROM departmentnews WHERE id = :departmentnews_id";
+                departmentNews.add(
+                        con.createQuery(departmentnewsQuery)
+                                .addParameter("departmentnews_id", DepartmentNewsId)
+                                .executeAndFetchFirst(DepartmentNews.class));
+            }
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+        return departmentNews;
+    }
+
 
     @Override
     public DepartmentNews findById(int id) {

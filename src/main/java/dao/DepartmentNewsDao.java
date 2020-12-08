@@ -15,6 +15,8 @@ public interface DepartmentNewsDao {
 
     //read
     List<DepartmentNews> getAll();
+    List<DepartmentNews> getAllDepartmentNewsByDepartmet(int department_id);
+    List<DepartmentNews> getAllDepartmentNewsByEmployee(int employee_id);
     // List<News> getAllReviewsByRestaurant(int restaurantId);
     // List<News> getAllReviewsByRestaurantSortedNewestToOldest(int restaurantId);
     DepartmentNews findById(int id);

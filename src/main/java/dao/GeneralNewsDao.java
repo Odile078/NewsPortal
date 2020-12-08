@@ -14,6 +14,7 @@ public interface GeneralNewsDao {
 
     //read
     List<GeneralNews> getAll();
+    List<GeneralNews> getAllgeneralNewsByEmployee(int employee_id);
     // List<News> getAllReviewsByRestaurant(int restaurantId);
     // List<News> getAllReviewsByRestaurantSortedNewestToOldest(int restaurantId);
     GeneralNews findById(int id);
