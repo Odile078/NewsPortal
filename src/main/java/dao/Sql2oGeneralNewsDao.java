@@ -1,6 +1,7 @@
 package dao;
 
 import models.DepartmentNews;
+import models.Employee;
 import models.GeneralNews;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -26,6 +27,20 @@ public class Sql2oGeneralNewsDao implements GeneralNewsDao{
 
     }
 
+    @Override
+    public void addEmployeeToGeneralNews(Employee employee, GeneralNews generalNews) {
+
+        String sql="INSERT INTO employees_generalnews (employee_id,generalnews_id) VALUES (:employee_id,:generalnews_id_id)";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("employee_id", Employee.getId())
+                    .addParameter("generalnews_id", GeneralNews.getId())
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+
+    }
 
 
     @Override
@@ -64,10 +79,10 @@ public class Sql2oGeneralNewsDao implements GeneralNewsDao{
     @Override
     public void clearAll() {
         try (Connection con=sql2o.open()){
-            String sql="DELETE FROM departments";
+
             String sqlNews="DELETE FROM generalnews";
             String sqlEmployeesDepartments="DELETE FROM employees_departments";
-            con.createQuery(sql).executeUpdate();
+
             con.createQuery(sqlEmployeesDepartments).executeUpdate();
             con.createQuery(sqlNews).executeUpdate();
 

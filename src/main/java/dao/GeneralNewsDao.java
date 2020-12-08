@@ -1,6 +1,7 @@
 package dao;
 
 import models.DepartmentNews;
+import models.Employee;
 import models.GeneralNews;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 public interface GeneralNewsDao {
     //create
     void addGeneralNews(GeneralNews generalnews);
+    void addEmployeeToGeneralNews(Employee employee, GeneralNews generalNews);
 
 
     //read

@@ -1,6 +1,8 @@
 package dao;
 
+import models.Department;
 import models.DepartmentNews;
+import models.Employee;
 
 import java.util.List;
 
@@ -8,6 +10,8 @@ public interface DepartmentNewsDao {
     //create
 
     void addDepartmentNews(DepartmentNews departmentNews);
+    void addEmployeeToDepartmentNews(Employee employee, DepartmentNews departmentNews);
+    void addDepartmentToDepartmentNews(Department department, DepartmentNews departmentNews);
 
     //read
     List<DepartmentNews> getAll();

@@ -1,6 +1,10 @@
 body{
-background-imgage:url("https://www.google.com/search?q=grey+backgrounds&tbm=isch&source=iu&ictx=1&fir=mGrmbhGOsWnf4M%252CQNkkYf0QjDsUkM%252C_&vet=1&usg=AI4_-kRiOeunHCybiKNe40VoBsOYQ0rhCQ&sa=X&ved=2ahUKEwjTlbG5lLztAhWEoFwKHWTfAAsQ9QF6BAgHEAE#imgrc=mGrmbhGOsWnf4M");
+     background-color: rgb(250, 242, 242);
+     background-size:cover;
+
+
 }
+
 .nav{
 margin-left:40%;
 }
@@ -34,11 +38,18 @@ text-decoration:none;
 color:rgb(238, 109, 50);
 }
 .navtitle{
-background-color: rgb(40, 211, 211);
+background-color: rgb(26, 54, 77);
 color: white;
 font-family: 'Peddana', serif;
 
 }
+.navtitle2{
+    background-color: rgb(26, 54, 77);
+    color: white;
+    font-family: 'Peddana', serif;
+    text-align: center;
+    
+    }
 .navview{
 margin-right:60px;
 margin-left:60px;
@@ -79,11 +90,14 @@ border-left: 6px solid rgb(40, 211, 211);;
 background-color: lightgrey;
 }
 .worker{
-    background-image: url("/images/workers.png");
+    background-image: url("/images/workers2.png");
      background-size:cover;
+     height:200px;
+     width:400px;
 }
 hr{
     color:rgb(40, 211, 211);
-    height: 5px;
+    height: 10px;
+    width:40px;
 
 }

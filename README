@@ -16,7 +16,7 @@ This is a Java program that  allows the Employees to register themselves and pos
 
 * git clone  ```https://github.com/Odile078/NewsPortal.git```
 
-* cd FaunaTailer
+* cd NewsPortal
 
 * code . or atom . based on the text editor you have.
 * Fork this repo
@@ -26,23 +26,25 @@ This is a Java program that  allows the Employees to register themselves and pos
 
 ## Database setup
 
-* CREATE DATABASE Faunatailer;;
+* CREATE DATABASE companynews;
 
-* \c Faunatailer;
+* \c companynews;
 
-* CREATE TABLE reganimals(id serial PRIMARY KEY, name varchar,type varchar, health varchar,age varchar);
-                
-* CREATE TABLE reglocations(id serial PRIMARY KEY, name varchar);
+* CREATE TABLE departments (id serial PRIMARY KEY,name varchar, description varchar);CREATE TABLE
 
-* CREATE TABLE regrangers(id serial PRIMARY KEY, name varchar, badge_id varchar,phone varchar);
+* CREATE TABLE employees(id serial PRIMARY KEY,name varchar, position varchar, role varchar,department_id int);
 
-* CREATE TABLE regsightings(id serial PRIMARY KEY, reganimal_id int,regranger_id int , reglocation_id int,registered timestamp);
+* CREATE TABLE employees_departments(id serial PRIMARY KEY,employee_id int, department_id int);
 
-* CREATE TABLE reglocations_regsightings(id serial PRIMARY KEY,reglocation_id int , regsighting_id int);
+* CREATE TABLE generalnews(id serial PRIMARY KEY,title varchar, writtenby varchar, content varchar,createdat timestamp, employee_id int);
 
-*  CREATE TABLE regrangers_regsightings(id serial PRIMARY KEY,regranger_id int , regsighting_id int);
+* CREATE TABLE employees_generalnews(id serial PRIMARY KEY, employee_id int,generalnews_id int);
 
-*CREATE DATABASE faunatailer_test WITH TEMPLATE faunatailer;
+* CREATE TABLE departmentnews(id serial PRIMARY KEY,title varchar, writtenby varchar, content varchar,createdat timestamp, employee_id int,department_id int);
+
+* CREATE TABLE employees_departmentnews(id serial PRIMARY KEY, employee_id int,departmentnews_id int);
+
+* CREATE TABLE departments_departmentnews(id serial PRIMARY KEY, department_id int,departmentnews_id int);
 
 
 ## Technologies Used

@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class GeneralNews {
-    public int id;
+    private static int id;
     public String title;
     public String writtenBy;
     public String content;
@@ -35,7 +35,7 @@ public class GeneralNews {
     public String getContent() {
         return content;
     }
-    public int getId() {
+    public static int getId() {
         return id;
     }
     public int getEmployee_id() {

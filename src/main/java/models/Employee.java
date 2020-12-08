@@ -3,7 +3,7 @@ package models;
 import java.util.Objects;
 
 public class Employee {
-    private int id;
+    private static int id;
     private String name;
     private String position;
     private String role;
@@ -29,7 +29,7 @@ public class Employee {
     }
 
 
-    public int getId() { return id; }
+    public static int getId() { return id; }
     public String getName() {
         return name;
     }

@@ -3,7 +3,7 @@ package models;
 import java.util.Objects;
 
 public class Department {
-    private int id;
+    private static int id;
     private String name;
     private String description;
     private int size;
@@ -24,7 +24,7 @@ public class Department {
         return description;
     }
     public int getSize() { return size; }
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
